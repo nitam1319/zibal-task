@@ -1,11 +1,12 @@
 import  { memo, useEffect, useRef, useState } from 'react'
 import { SearchOutlined } from '@ant-design/icons'
 import type { GetRef, TableColumnsType, TableColumnType } from 'antd'
-import { Button, Flex, Input, Space, Table, Typography, message } from 'antd'
+import { Button, Flex, Input, Space, Table, Typography } from 'antd'
 import type { FilterDropdownProps } from 'antd/es/table/interface'
 import { GoDotFill } from 'react-icons/go'
 import useNotif from '../Utils/useNotif'
 import ModalSettlement from './ModalSettlement'
+import Loading from './Loading'
 type InputRef = GetRef<typeof Input>
 const { Text , Paragraph} = Typography
 
@@ -66,6 +67,7 @@ const TableData = () => {
   const { openNotif, contextHolderNotification } = useNotif()
   
   function getData () {
+    setData([])
     fetch('http://localhost:8585/data')
       .then(response => {
         if (response.status >= 200 && response.status < 300) {
@@ -76,6 +78,7 @@ const TableData = () => {
       .then(response => response.json()) // parses response to JSON
       .then(result => {
         setData(result)
+        
       })
       .catch(error => {
         openNotif(
@@ -271,6 +274,8 @@ const TableData = () => {
   return (
     <>
       {contextHolderNotification}
+    {data.length === 0?<Loading/>:
+    <>
       <ModalSettlement open={open} setOpen={setOpen} setFlagFetch={setFlagFetch}/>
       <Table
         scroll={{ y: 600}}
@@ -288,6 +293,7 @@ const TableData = () => {
           </>
         )}
       />
+    </>}
     </>
   )
 }
