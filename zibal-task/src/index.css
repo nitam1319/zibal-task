@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'vazir';
+  src: local('vazir'),
+       url('./Fonts/Vazir-Medium-FD-WOL.ttf') format('truetype'),
+}
+body {
+  margin: 0;
+  font-family: 'vazir';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  font-weight: 600;
+  background-color: rgb(229, 229, 229);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0 20px  ;
+}
+.bgTable{
+  background-color: #0000000c;
+}
+.ant-table-wrapper{
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ant-table-footer{
+  height: 54px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.ant-table-footer>p{
+  margin: 0;
+}
+h3{
+  margin-top: 10px;
+}
+.ant-modal-content{
+  padding-bottom: 10px !important;
+}
